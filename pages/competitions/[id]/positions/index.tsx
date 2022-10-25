@@ -76,9 +76,17 @@ const Positions: NextPage<Props> = ({ competition, races }) => {
 
     const clearCanvas = () => {
         const canvas = canvasRef.current;
+
+        const image = canvas.toDataURL("image/jpg")
+        const formData = new FormData()
+
+        formData.append("file", image)
+
         const context = canvas.getContext("2d")
         context.fillStyle = "white"
         context.fillRect(0, 0, canvas.width, canvas.height)
+
+        // last step is to send data to server
     }
 
     return (
