@@ -33,7 +33,7 @@ const Competition: NextPage<Props> = ({ competition, races }) => {
                                 <Link href={`/races/${race.id}`}>
                                     <a><Button.Link>Race #{race.race_nr}</Button.Link></a>
                                 </Link>
-                                <Link href={`/competitions/${competition.id}/positions`}>
+                                <Link href={`/competitions/${competition.id}/races/${race.id}/positions`}>
                                     <a><Button.Link>take finishes</Button.Link></a>
                                 </Link>
                             </List.Item>
