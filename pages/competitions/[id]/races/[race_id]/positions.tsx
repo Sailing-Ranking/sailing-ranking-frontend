@@ -10,8 +10,7 @@ import { Race } from "../../../../../types/race"
 import { useFetchCompetitions } from "../../../../../hooks/competition/useFetchCompetitions"
 import Paragraph from "../../../../../components/utils/typography/Paragraph"
 import { useCreatePosition } from "../../../../../hooks/position/useCreatePosition"
-import { basePath } from "../../../.."
-import { unescape } from "querystring"
+import { useFetchRaces } from "../../../../../hooks/race/useFetchRaces"
 
 
 type Props = {
@@ -133,15 +132,8 @@ const Position: NextPage<Props> = ({ competition, race }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    // @ts-ignore
     const competition: Competition = await useFetchCompetitions(params?.id)
-    // @ts-ignore
-    // const race: Race = await useFetchRaces(params?.race_id)
-    const response = await fetch(`${basePath}/races/${params?.race_id}`)
-
-    if (!response.ok) throw new Error(response.statusText)
-
-    const race: Race =  await response.json()
+    const race: Race = await useFetchRaces(params?.race_id)
 
     return {
         props: {
