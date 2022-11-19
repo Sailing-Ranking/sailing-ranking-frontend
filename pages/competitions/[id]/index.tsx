@@ -24,7 +24,7 @@ const Competition: NextPage<Props> = ({ competition, races }) => {
 
     const handleSubmitRace = async () => {
         useCreateRace(competition.id)
-        router.reload()
+        router.replace(router.asPath)
     }
 
     return (

@@ -10,7 +10,7 @@ const List: FunctionComponent<ListProps> &
     { Item: FunctionComponent<ItemProps> } = (props) => {
     const {children, className, ...rest} = props;
     return (
-        <ul { ...rest } className={`bg-white rounded-lg w-96 text-gray-900 ${className}`}>
+        <ul { ...rest } className={`bg-white rounded-lg text-gray-900 ${className}`}>
             {children}
         </ul>
     )

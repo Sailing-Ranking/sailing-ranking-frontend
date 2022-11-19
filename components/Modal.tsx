@@ -3,6 +3,7 @@ import React, { FunctionComponent, HTMLAttributes } from "react"
 
 interface IModalProps extends HTMLAttributes<HTMLDivElement> {}
 type ModalProps = {
+    id: string
     size?: "sm" | "md" | "lg" | "xl"
 } & IModalProps
 
@@ -20,7 +21,7 @@ const Modal: FunctionComponent<ModalProps> &
     { Body: FunctionComponent<BodyProps> } & 
     { Header: FunctionComponent<HeaderProps> } & 
     { Footer: FunctionComponent<FooterProps> } = (props): JSX.Element => {
-        const { children, className, size, ...rest } = props;
+        const { children, className, id, size, ...rest } = props;
         
         let modalSize: string;
 
@@ -35,14 +36,14 @@ const Modal: FunctionComponent<ModalProps> &
                 modalSize = "modal-xl"
                 break;
             default:
-                modalSize = ""
+                modalSize = "sm"
                 break;
         }
 
 
         return (
-            <div  className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1}
+            <div className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                id={id} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1}
                 aria-labelledby="staticBackdropLabel" aria-hidden="true"
             >
                 <div className={`modal-dialog modal-dialog-scrollable ${modalSize} relative w-auto pointer-events-none`}>

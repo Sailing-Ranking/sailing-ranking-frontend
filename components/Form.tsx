@@ -90,9 +90,10 @@ const TextArea: FunctionComponent<TextAreaProps> = (props): JSX.Element => {
 const DatePicker: FunctionComponent<DatePickerProps> = (props): JSX.Element => {
     const { children, className, label, ...rest } = props;
     return (
-        <div className="datepicker relative form-floating mb-3 xl:w-96">
-            <input { ...rest } type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"/>
-            <label htmlFor="floatingInput" className="text-gray-700">{label}</label>
+        <div className="datepicker relative form-floating mb-3 xl:w-96" data-mdb-toggle-button="false">
+            <input type="text" {...rest} className={`form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none ${className}`}
+            placeholder="Select a date" data-mdb-toggle="datepicker" />
+            <label htmlFor="floatingInput" className="text-gray-700">Select a date</label>
         </div>
     )
 }
