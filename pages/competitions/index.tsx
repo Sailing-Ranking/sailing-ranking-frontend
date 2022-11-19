@@ -7,7 +7,7 @@ import Page from "../../components/layout/Page";
 import Modal from "../../components/Modal";
 import Button from "../../components/utils/Button";
 import List from "../../components/utils/List";
-import { H1 } from "../../components/utils/typography/Header";
+import { H1, H4 } from "../../components/utils/typography/Header";
 import { useFetchCompetitions } from "../../hooks/competition/useFetchCompetitions";
 import { useFetchBoats } from "../../hooks/competition/useFetchBoats"
 import { Competition } from "../../types/competition";
@@ -31,24 +31,24 @@ const Competitions: NextPage<Props> = ({ competitions, boats }) => {
 
     return (
         <Page>
-            <section className="flex justify-between">
-                <H1>Competitions:</H1>
-                <Button.Success className="my-auto" data-bs-toggle="modal" data-bs-target="#create_competition_modal">Create</Button.Success>
-            </section>
-            <hr />
             <Main>
-                <div className="flex justify-start">
+                <section className="flex justify-between">
+                    <H1>Competitions:</H1>
+                    <Button.Success className="my-auto" data-bs-toggle="modal" data-bs-target="#create_competition_modal">Create</Button.Success>
+                </section>
+                <hr />
+                <section className="flex justify-start mt-4">
                     <List className="w-full">
                         {competitions.map(competition => (
                             <List.Item key={competition.id} className="flex justify-between">
                                 <Link href={`/competitions/${competition.id}`}>
-                                    <a>{competition.title}</a>
+                                    <Button.Link><a>{competition.title}</a></Button.Link>
                                 </Link>
-                                <Button.Danger size="sm" onClick={() => handleDelete(competition.id)}>delete</Button.Danger>
+                                <Button.Danger outlined={true} size="sm" onClick={() => handleDelete(competition.id)}>delete</Button.Danger>
                             </List.Item>
                         ))}
                     </List>
-                </div>
+                </section>
             </Main>
             <CreateCompetitionModal boats={boats} />
         </Page>
@@ -109,29 +109,32 @@ const CreateCompetitionModal: React.FunctionComponent<ModalProps> = ({ boats }) 
 
     return (
         <Modal id="create_competition_modal" size="lg">
-            <Modal.Header>Create Competition</Modal.Header>
+            <Modal.Header>
+                <H4>Create Competition</H4>
+            </Modal.Header>
+
             <Modal.Body>
                 {status != 0 && status == 201 && <Alert.Success>Successfully created a competition</Alert.Success>}
-                {status != 0 && status == 400 && <Alert.Danger>Something went wrong creating a competition</Alert.Danger>}
+                {status != 0 && status >= 400 && <Alert.Danger>Something went wrong creating a competition</Alert.Danger>}
                 <Form>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Input type="text" placeholder="Title" name="title" value={inputs?.title} onChange={handleChange}></Form.Input>
+                        <Form.Input type="text" placeholder="Title" name="title" value={inputs.title} onChange={handleChange}></Form.Input>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Boat Type</Form.Label>
-                        <Form.Select name="boat" value={inputs?.boat} onChange={handleSelectChange}>
+                        <Form.Select name="boat" value={inputs.boat} onChange={handleSelectChange}>
                             {boats.map((boat, index) => <option key={index} value={boat}>{boat}</option>)}
                         </Form.Select>
                     </Form.Group>
                     <div className="grid grid-cols-2 gap-4">
                         <Form.Group>
                             <Form.Label>Start Date</Form.Label>
-                            <Form.Input type="date" name="start_date" value={inputs?.start_date} onChange={handleChange}></Form.Input>
+                            <Form.Input type="date" name="start_date" value={inputs.start_date} onChange={handleChange}></Form.Input>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>End Date</Form.Label>
-                            <Form.Input type="date" name="end_date" value={inputs?.end_date} onChange={handleChange}></Form.Input>
+                            <Form.Input type="date" name="end_date" value={inputs.end_date} onChange={handleChange}></Form.Input>
                         </Form.Group>
                     </div>
                 </Form>
