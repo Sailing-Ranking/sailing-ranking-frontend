@@ -1,9 +1,12 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, HTMLAttributes } from "react"
 
-// @ts-ignore
-const Heading: FunctionComponent = ({children}) => {
+interface IHeadingProps extends HTMLAttributes<HTMLDivElement> {}
+type HeadingProps = {} & IHeadingProps
+
+const Heading: FunctionComponent<HeadingProps> = (props) => {
+    const { children, className, ...rest } = props;
     return (
-        <div className="text-center py-20 px-6">
+        <div { ...rest } className={`text-center py-20 px-6 ${className}`}>
             {children}
         </div>
     )
