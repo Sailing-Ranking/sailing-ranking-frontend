@@ -39,9 +39,10 @@ const Competition: NextPage<Props> = ({ competition, races, countries, clubs }) 
 
     return (
         <Page>
-            <Heading className="bg-gray-100 rounded-xl">
+            <Heading className="bg-gray-100 rounded-xl grid grid-flow-row gap-4">
                 <H1>{competition.title}</H1>
-                <Button.Primary outlined={true} size="lg" data-bs-toggle="modal" data-bs-target="#signup_competition_modal">compete</Button.Primary>
+                <Button.Primary className="m-auto" outlined={true} size="lg" data-bs-toggle="modal" data-bs-target="#signup_competition_modal">compete</Button.Primary>
+                <Link href={`/competitions/${competition.id}/competitors`}><a><Button.Link size="lg">attendees</Button.Link></a></Link>
             </Heading>
 
             <Main>
