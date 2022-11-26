@@ -42,7 +42,7 @@ const Competitions: NextPage<Props> = ({ competitions, boats }) => {
                         {competitions.map(competition => (
                             <List.Item key={competition.id} className="flex justify-between">
                                 <Link href={`/competitions/${competition.id}`}>
-                                    <Button.Link><a>{competition.title}</a></Button.Link>
+                                    <a><Button.Link>{competition.title}</Button.Link></a>
                                 </Link>
                                 <Button.Danger outlined={true} size="sm" onClick={() => handleDelete(competition.id)}>delete</Button.Danger>
                             </List.Item>

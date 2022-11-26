@@ -39,10 +39,22 @@ const Competition: NextPage<Props> = ({ competition, races, countries, clubs }) 
 
     return (
         <Page>
-            <Heading className="bg-gray-100 rounded-xl grid grid-flow-row gap-4">
+            <Heading className="rounded-xl grid grid-flow-row gap-4">
                 <H1>{competition.title}</H1>
                 <Button.Primary className="m-auto" outlined={true} size="lg" data-bs-toggle="modal" data-bs-target="#signup_competition_modal">compete</Button.Primary>
-                <Link href={`/competitions/${competition.id}/competitors`}><a><Button.Link size="lg">attendees</Button.Link></a></Link>
+                <div className="flex justify-evenly">
+                    <Link href={`/competitions/${competition.id}/competitors`}>
+                        <a>
+                            <Button.Link className="w-56" size="lg">attendees</Button.Link>
+                        </a>
+                    </Link>
+
+                    <Link href={`/competitions/${competition.id}/results`}>
+                        <a>
+                            <Button.Link className="w-56" size="lg">results</Button.Link>
+                        </a>
+                    </Link>
+                </div>
             </Heading>
 
             <Main>
