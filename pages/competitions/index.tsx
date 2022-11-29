@@ -142,7 +142,7 @@ const CreateCompetitionModal: React.FunctionComponent<ModalProps> = ({ boats }) 
 
             <Modal.Footer className="justify-between">
                 <Button.Success onClick={handleSubmit}>submit</Button.Success>
-                <Button.Danger data-bs-dismiss="modal" onClick={handleClose}>close</Button.Danger>
+                <Button.Danger data-bs-dismiss="modal" outlined={true} onClick={handleClose}>close</Button.Danger>
             </Modal.Footer>
         </Modal>
     )
